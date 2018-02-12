@@ -1,0 +1,37 @@
+---
+
+- name: Add Influxdb repository key
+  apt_key:
+    url: "{{ influxdb_repo_key }}"
+    state: present
+
+- name: Add Influxdb repository
+  apt_repository:
+    repo: "{{ influxdb_repo }}"
+    state: present
+    update_cache: yes
+
+- name: Install Influxdb package
+  apt:
+    name: influxdb
+    state: present
+
+- name: Copy the systemd unit file
+  template:
+    src: "lib/systemd/system/influxdb.service.j2"
+    dest: "/lib/systemd/system/influxdb.service"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Reload systemd
+
+- name: Configure InfluxDB
+  template:
+    src: "etc/influxdb/influxdb.conf.j2"
+    dest: "/etc/influxdb/influxdb.conf"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Restart influxdb

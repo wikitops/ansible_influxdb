@@ -1,0 +1,4 @@
+---
+
+influxdb_repo_key: https://repos.influxdata.com/influxdb.key
+influxdb_repo: "deb https://repos.influxdata.com/ubuntu xenial stable"
