@@ -1,0 +1,10 @@
+---
+
+- name: INFLUXDB REDHAT | Install repository
+  yum_repository:
+    name: influxdb
+    description: InfluxDB YUM repo
+    baseurl: "{{ influxdb_yum_repo }}"
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: "{{ influxdb_yum_repo_key }}"

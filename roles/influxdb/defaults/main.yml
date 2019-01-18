@@ -1,4 +1,13 @@
 ---
 
-influxdb_repo_key: https://repos.influxdata.com/influxdb.key
-influxdb_repo: "deb https://repos.influxdata.com/ubuntu xenial stable"
+###
+# INFLUXDB
+###
+
+# Debian
+influxdb_apt_repo_key: https://repos.influxdata.com/influxdb.key
+influxdb_apt_repo: "deb https://repos.influxdata.com/ubuntu xenial stable"
+
+# RedHat
+influxdb_yum_repo: https://repos.influxdata.com/rhel/\$releasever/\$basearch/stable
+influxdb_yum_repo_key: https://repos.influxdata.com/influxdb.key

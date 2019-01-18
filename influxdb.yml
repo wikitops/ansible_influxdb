@@ -1,6 +1,6 @@
 ---
 
-- hosts: all
+- hosts: influxdb
   remote_user: vagrant
   become: yes
   roles:

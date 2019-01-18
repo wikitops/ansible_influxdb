@@ -1,0 +1,12 @@
+---
+
+- name: INFLUXDB DEBIAN | Add repository key
+  apt_key:
+    url: "{{ influxdb_apt_repo_key }}"
+    state: present
+
+- name: INFLUXDB DEBIAN | Add repository
+  apt_repository:
+    repo: "{{ influxdb_apt_repo }}"
+    state: present
+    update_cache: yes

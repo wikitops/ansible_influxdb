@@ -1,22 +1,19 @@
 ---
 
-- name: Add Influxdb repository key
-  apt_key:
-    url: "{{ influxdb_repo_key }}"
-    state: present
+- name: INFLUXDB | Manage Debian environent
+  import_tasks: debian.yml
+  when: ansible_os_family == "Debian"
 
-- name: Add Influxdb repository
-  apt_repository:
-    repo: "{{ influxdb_repo }}"
-    state: present
-    update_cache: yes
+- name: INFLUXDB | Manage RedHat environent
+  import_tasks: redhat.yml
+  when: ansible_os_family == "RedHat"
 
-- name: Install Influxdb package
-  apt:
+- name: INFLUXDB | Installation
+  package:
     name: influxdb
     state: present
 
-- name: Copy the systemd unit file
+- name: INFLUXDB | Copy the systemd unit file
   template:
     src: "lib/systemd/system/influxdb.service.j2"
     dest: "/lib/systemd/system/influxdb.service"
@@ -24,9 +21,9 @@
     group: root
     mode: 0644
   notify:
-    - Reload systemd
+    - Restart influxdb
 
-- name: Configure InfluxDB
+- name: INFLUXDB | Configuration
   template:
     src: "etc/influxdb/influxdb.conf.j2"
     dest: "/etc/influxdb/influxdb.conf"
