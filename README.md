@@ -38,7 +38,7 @@ Current machine states:
 influxdb01                   running (virtualbox)
 ```
 
-If everything run as expected,  you should access the InfluxDB on this port : 10.0.0.131:8086
+If everything run as expected, you should access the InfluxDB on this port : 10.0.0.131:8086
 
 #### Destroy
 
